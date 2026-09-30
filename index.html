@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<title>Academia 365</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="logo">A</span><div><strong>Academia 365</strong><small>Comunicação • Observação • Pensamento</small></div></div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Configurações">⚙️</button>
+  </header>
+
+  <main>
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">MISSÃO DO DIA</span>
+          <h1 id="heroTitle">Seu próximo nível começa hoje.</h1>
+          <p id="heroSub">Uma missão de 30 minutos. O próximo desafio permanece escondido.</p>
+          <button class="primary" id="startBtn">Começar missão</button>
+        </div>
+        <div class="progress-ring"><span id="dayNumber">1</span><small>/365</small></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><span>🔥 Sequência</span><b id="streak">0</b><small>dias</small></div>
+        <div class="stat"><span>⭐ XP</span><b id="xp">0</b><small>pontos</small></div>
+        <div class="stat"><span>🏆 Troféus</span><b id="trophyCount">0</b><small>conquistados</small></div>
+      </div>
+      <div class="section-head"><div><span class="eyebrow">TRILHA</span><h2>Seu progresso</h2></div><span id="percent">0%</span></div>
+      <div class="bar"><i id="progressBar"></i></div>
+      <div class="phase-card"><span id="phaseBadge">Fase 1</span><h3 id="phaseName">Fundamentos da Observação</h3><p id="phaseDesc">Aprenda a separar o que você observa daquilo que você interpreta.</p></div>
+    </section>
+
+    <section id="missionView" class="view">
+      <button class="back" id="backBtn">← Voltar</button>
+      <div class="mission-header"><span class="eyebrow" id="missionPhase">FASE</span><h1 id="missionTitle"></h1><div class="mission-meta"><span>⏱️ 30 min</span><span id="missionDay"></span></div></div>
+      <div class="card"><h3>🎯 Objetivo</h3><p id="objective"></p></div>
+      <div class="card"><h3>🧠 Missão</h3><p id="instructions"></p></div>
+      <div class="card"><h3>🎬 Vídeo recomendado</h3><p>Procure uma explicação complementar sobre o tema. O resultado abre no YouTube para você escolher um vídeo atual e confiável.</p><a id="videoLink" class="secondary" target="_blank" rel="noopener">Abrir busca no YouTube ↗</a></div>
+      <div class="card"><h3>📝 Sua reflexão</h3><textarea id="reflection" placeholder="Escreva o que você observou, descobriu ou errou..."></textarea></div>
+      <div class="card tip"><h3>⚠️ Regra da missão</h3><p id="checkpoint"></p></div>
+      <button class="primary full" id="completeBtn">Concluir missão + desbloquear recompensa</button>
+    </section>
+
+    <section id="trophiesView" class="view">
+      <div class="section-head"><div><span class="eyebrow">COLEÇÃO</span><h1>Sala de Troféus</h1></div></div>
+      <p class="muted">As recompensas ficam escondidas até você merecê-las.</p>
+      <div id="trophyGrid" class="trophy-grid"></div>
+    </section>
+
+    <section id="statsView" class="view">
+      <div class="section-head"><div><span class="eyebrow">DESEMPENHO</span><h1>Seu painel</h1></div></div>
+      <div class="big-stat"><span>Missões concluídas</span><b id="doneStat">0 / 365</b></div>
+      <div class="big-stat"><span>Progresso</span><b id="progressStat">0%</b></div>
+      <div class="big-stat"><span>XP acumulado</span><b id="xpStat">0</b></div>
+      <div class="big-stat"><span>Maior sequência registrada</span><b id="bestStreak">0</b></div>
+    </section>
+
+    <section id="settingsView" class="view">
+      <button class="back" id="settingsBack">← Voltar</button>
+      <span class="eyebrow">SEGURANÇA</span><h1>Configurações e backup</h1>
+      <div class="card"><h3>👤 Conta</h3><p id="authStatus">Sem conta conectada. O modo local continua funcionando.</p><div class="row"><input id="emailInput" class="auth-input" type="email" placeholder="Seu e-mail"><input id="passwordInput" class="auth-input" type="password" placeholder="Senha (mín. 6 caracteres)"><button class="secondary" id="signupBtn">Criar conta</button><button class="secondary" id="loginBtn">Entrar</button><button class="secondary" id="logoutBtn" style="display:none">Sair</button></div></div>
+      <div class="card"><h3>☁️ Supabase</h3><p id="cloudStatus">Modo local: seu progresso está salvo neste aparelho.</p><button class="secondary" id="testCloud">Testar conexão</button></div>
+      <div class="card"><h3>💾 Backup</h3><p>Exporte seu progresso regularmente. Guarde o arquivo em um lugar seguro.</p><div class="row"><button class="secondary" id="exportBtn">Exportar</button><label class="secondary file-btn">Importar<input type="file" id="importFile" accept=".json"></label></div></div>
+      <div class="card danger"><h3>⚠️ Atenção</h3><p>Não apague os dados do navegador sem antes exportar um backup. O backup é sua última camada de recuperação.</p></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav active" data-view="homeView">🏠<small>Início</small></button>
+    <button class="nav" data-view="trophiesView">🏆<small>Troféus</small></button>
+    <button class="nav" data-view="statsView">📊<small>Desempenho</small></button>
+  </nav>
+</div>
+<script src="missions.js"></script>
+<script src="config.js" onerror="window.SUPABASE_CONFIG=window.SUPABASE_CONFIG||null"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
